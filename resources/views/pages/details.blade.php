@@ -15,39 +15,53 @@
                         </tr>
                         <tr>
                             <th>Adresa obecného úradu:</th>
-                            <td>{{$data->address ?? "-"}}</td>
+                            <td>{{$data->address_streetName ?? "-"}} {{$data->address_buildingNumber ?? "-"}}, {{$data->address_postcode ?? "-"}} {{$data->address_city ?? "-"}}</td>
                         </tr>
                         <tr>
                             <th>Telefón:</th>
-                            <td>{{$data->phone ?? "-"}}</td>
+                            <td>
+                                @if($data->phone_prefix && $data->phone)
+                                    {{$data->phone_prefix ?? "-"}} / {{$data->phone ?? "-"}}
+                                @else
+                                    -
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <th>Fax:</th>
-                            <td>{{$data->fax ?? "-"}}</td>
+                            <td>
+                                @if($data->phone_prefix && $data->fax)
+                                    {{$data->phone_prefix ?? "-"}} / {{$data->fax ?? "-"}}
+                                @else
+                                    -
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <th>Email:</th>
                             <td>
-                                @if(isset($data->email))
+                                {{$data->email ?? "-"}}
+                                {{-- @if(isset($data->email))
                                 <a class="text-dark" href="mailto:{{$data->email}}">{{$data->email}}</a>
                                 @else
-                                "-"
-                                @endif
+                                -
+                                @endif --}}
                             </td>
                         </tr>
                         <tr>
                             <th>Web:</th>
                             <td>
-                                @if(isset($data->web))
+                                {{$data->web ?? "-"}}
+                                {{-- @if(isset($data->web))
                                 <a class="text-dark" href="{{$data->web}}">{{$data->web}}</a>
                                 @else
-                                "-"
-                                @endif
+                                -
+                                @endif --}}
                             </td>
                         </tr>
                         <tr>
                             <th>Zemepisné súradnice:</th>
-                            <td>{{($data->geo_latitude && $data->geo_longitude) ? ($data->geo_latitude . ", " . $data->geo_longitude) : "-"}}</td>
+                            <td>{{(isset($data->geo_latitude) && isset($data->geo_longitude)) ? ($data->geo_latitude . ", " . $data->geo_longitude) : "-"}}</td>
                         </tr>
                     </table>
                 </div>
@@ -55,7 +69,7 @@
             <div class="card border-0">
                 <div class="card-body row">
                     <div class="m-auto">
-                        <h1 class="font-weight-bold text-primary mx-auto">{{$data->name}}</h1>
+                        <h1 class="font-weight-bold text-primary mx-auto">{{$data->name ?? "-"}}</h1>
                     </div>
                 </div>
             </div>

@@ -20,3 +20,8 @@ Route::get('/', function () {
 Route::post('/municipalities/search','MunicipalitiesController@search')->name('municipalities.search');
 Route::get('/municipalities','MunicipalitiesController@index')->name('municipalities.index');
 Route::get('/municipalities/{id?}','MunicipalitiesController@show')->name('municipalities.detail');
+
+//test data
+Route::get('/dummy_data/list', 'DummyDataController@list');
+Route::get('/dummy_data/detail/{name}', 'DummyDataController@detail');
+Route::get('/dummy_data/edit/{id}', 'DummyDataController@edit');

@@ -16,7 +16,7 @@ class MunicipalitiesController extends Controller
 
 
 	public function show($id){
-		$municipality = Municipality::where('id', $id)->first();
+		$municipality = Municipality::find($id);
 		return view('pages.details')->with('data', $municipality);
 	}
 
