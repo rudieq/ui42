@@ -736,7 +736,7 @@ pageTracker._trackPageview();
                   <td width="150" valign="top">Názov obce: </td>
                   <td width="220" valign="top" class="usertext"><b>{{ $name }}</b></td>
                   <td rowspan="6" align="left" valign="top" class="usertext"><strong>Erb obce<br>
-                  </strong><img src="https://e-obce.sk/erb.php?id_obce={{ $id }}" alt="Erb {{ $name }}"><br><br><input type="file" name="erbfile" id="erbfile">
+                  </strong><img src="{{ url('/') }}/img/logo.png" alt="Erb {{ $name }}"><br><br><input type="file" name="erbfile" id="erbfile">
                   <br></td>
                 </tr>
                 <tr>

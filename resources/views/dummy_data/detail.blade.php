@@ -772,7 +772,7 @@ pageTracker._trackPageview();
 <br>  </td>
   </tr>
   <tr>
-    <td width="84" rowspan="4" align="center" valign="top"><img src="https://www.e-obce.sk/erb/26.gif" alt="Erb {{ $name }}" title="Erb {{ $name }}" ></td>
+    <td width="84" rowspan="4" align="center" valign="top"><img src="/img/logo.png" alt="Erb {{ $name }}" title="Erb {{ $name }}" ></td>
     <td width="220" valign="top"><strong>Obecný úrad</strong></td>
     <td width="80"><div align="right">
                 Tel:

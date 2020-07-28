@@ -68,7 +68,7 @@ class DataImport extends Command
     {
         //using custom load funtion to fix encoding issues
         $url = config('dataimport.source_url');
-        $url = 'http://127.0.0.1:8000/dummy_data/edit/%d';
+        // $url = 'http://127.0.0.1:8000/dummy_data/edit/%d';
         $url = sprintf($url, $id);
 
         $html = $this->load_curl($url);
@@ -98,6 +98,8 @@ class DataImport extends Command
         // web
         $municipality->web = $form->find('input[id="URL"]',0)->value;
         // img
+        $municipality->img = $this->import_img($id, $form->find('img', 0)->src);
+        
         // geo
 
         if($municipality->name != '')
@@ -125,5 +127,31 @@ class DataImport extends Command
         
         return new HtmlDocument($doc);
     }
+
+    private function import_img($id, $url)
+    {
+        $img_path = '/coat_of_arms/' . "img" . $id ;
+        $file_path = storage_path('app/public'. $img_path);
+        
+        $fp = fopen($file_path, "w+");
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_FILE, $fp);
+        //follow redirects.
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+        curl_exec($ch);
+        $st_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        curl_close($ch);
+        fclose($fp);
+        
+        if($st_code == 200)
+            //OK
+            return '/storage' . $img_path;
+        else
+            //not OK
+            return false;
+     }
 
 }
